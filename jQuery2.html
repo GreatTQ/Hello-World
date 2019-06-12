@@ -12,7 +12,7 @@
       $(function(){
         var x = 10;
         var y = 10;
-        $(".tooltip").mouseover(function(e){
+        $(".tooltip").hover(function(e){
           this.myTip = this.title;
           this.title = " ";
           var $div_tip = $("<div class='add'>" + this.myTip + "</div>");
@@ -23,11 +23,11 @@
               "top": (e.pageY + y) + "px",
               "left": (e.pageX + x) + "px"
             }).show("fast");
-        }).mouseout(function(){
+        }), function(){
           var add = $(".add");
           this.title = this.myTip;
           add.remove();
-        }).mousemove(function(e){
+        }, mousemove(function(e){
           $(".add")
             .css({
               "top": (e.pageY + y) + "px",
