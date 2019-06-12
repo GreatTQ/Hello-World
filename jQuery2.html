@@ -23,11 +23,11 @@
               "top": (e.pageY + y) + "px",
               "left": (e.pageX + x) + "px"
             }).show("fast");
-        }), function(){
+        }, function(){
           var add = $(".add");
           this.title = this.myTip;
           add.remove();
-        }, mousemove(function(e){
+        }), mousemove(function(e){
           $(".add")
             .css({
               "top": (e.pageY + y) + "px",
