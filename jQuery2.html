@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery2</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $(function(){
+        var x = 10;
+        var y = 10;
+        $(".tooltip").mouseover(function(e){
+          this.myTip = this.title;
+          this.title = " ";
+          var $div_tip = $("<div class='add'>" + this.myTip + "</div>");
+          $(".my").append($div_tip);
+          $(".add")
+            .css({
+              "position": "absolute",
+              "top": (e.pageY + y) + "px",
+              "left": (e.pageX + x) + "px"
+            }).show("fast");
+        }).mouseout(function(){
+          var add = $(".add");
+          this.title = this.myTip;
+          add.remove();
+        }).mousemove(function(e){
+          $(".add")
+            .css({
+              "top": (e.pageY + y) + "px",
+              "left": (e.pageX + x) + "px"
+            });
+        });
+      })
+    </script>
+  </head>
+  <body>
+    <p class="my"><a href="" class="tooltip" title="这是我的超链接提示1">提示1</a></p>
+    <p><a href="" title="这是自带超链接提示1">自带提示</a></p>
+    <p><a href="" title="这是自带超链接提示2">自带提示</a></p>
+  </body>
+</html>
