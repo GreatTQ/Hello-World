@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>if</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div>
+      <input id="firstNum" type="text" value="4" />
+      <input id="lastNum" type="text" value="2" />
+      <button id="add-btn">加</button>
+      <button id="minus-btn">减</button>
+      <button id="times-btn">乘</button>
+      <button id="divide-btn">除</button>
+      <br />
+      <label for="result">运算结果：</label><input type="text" id="result" />
+    </div>
+    <script>
+      $(function () {
+        function app(vl){
+          var sfn = document.getElementById("firstNum").value;
+          var fn = Number(sfn);
+          var sln = document.getElementById("lastNum").value;
+          var ln = Number(sln);
+          var re = $("#result");
+          var tf = (sfn.length == fn.toString().length && sln.length == ln.toString().length);
+          if(tf){
+            switch(vl){
+            case "add-btn":
+              re.val(fn + ln);
+              break;
+            case "minus-btn":
+              re.val(fn - ln);
+              break;
+            case "times-btn":
+              re.val(fn * ln);
+              break;
+            case "divide-btn":
+              if(ln == 0){
+                alert("请重新输入！");
+                $("#firstNum").val(null);
+                $("#lastNum").val(null);
+                re.val(null);
+                return;
+              } else {
+                re.val(fn / ln);
+              }
+            }
+          } else {
+            alert("请重新输入！");
+            $("#firstNum").val(null);
+            $("#lastNum").val(null);
+            re.val(null);
+            return;
+          }
+        }
+        $("#add-btn").click(function(){
+          app("add-btn");
+        })
+        $("#minus-btn").click(function(){
+          app("minus-btn");
+        })
+        $("#times-btn").click(function(){
+          app("times-btn");
+        })
+        $("#divide-btn").click(function(){
+          app("divide-btn");
+        })
+      })
+    </script>
+  </body>
+</html>
