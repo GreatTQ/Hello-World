@@ -8,12 +8,32 @@
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-  <input id="dec-number" type="number" placeholder="输入一个十进制非负整数" />
+  <input id="dec-number" type="text" placeholder="输入一个十进制非负整数" />
   <button id="trans-btn">转化为二进制</button>
-  <p id="result">运算结果</p>
+  <p id="result">运算结果:<span class="re"></span></p>
 
   <script>
-    
+    $(function(){
+      function app(vl) {
+        switch(vl){
+          case 1:
+            return "1";
+            break;
+          case 2:
+            return "10";
+            break;
+          default:
+          return app(vl % 2) + "0";
+        }
+        
+
+      }
+      $("#trans-btn").click(function(){
+        var de = Number($("#dec-number").val());
+        var dl = app(de);
+        $("span").text(dl);
+      })
+    })
   </script>
 </body>
 </html>
