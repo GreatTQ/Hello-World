@@ -1,0 +1,28 @@
+创建简单的vue.cli
+  1、安装node、npm
+  2、全局安装vue-cli
+    npm install --global vue-cli
+  3、创建一个基于webpack模板的新项目
+    vue init webpack my-project
+  4、安装依赖
+    cd my-project
+    npm run dev
+  5、退出vue-cli环境
+    Ctrl c
+  6、报错：You may use special comments to disable some warnings.
+          Use // eslint-disable-next-line to ignore the next line.
+          Use /* eslint-disable */ to ignore all warnings in a file.
+     解决：
+       1. 在build/webpack.base.conf.js文件中，注释或者删除掉：module->rules中有关eslint的规则
+        module: {
+          rules: [
+            //...(config.dev.useEslint ? [createLintingRule()] : []), // 注释或者删除
+            {
+              test: /\.vue$/,
+              loader: 'vue-loader',
+              options: vueLoaderConfig
+            },
+            ...
+            }
+          ]
+        }
