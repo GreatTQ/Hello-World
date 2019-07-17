@@ -1,4 +1,4 @@
-创建简单的vue.cli
+创建简单的vue.cli小项目
   1、安装node、npm
   2、全局安装vue-cli
     npm install --global vue-cli
