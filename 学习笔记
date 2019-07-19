@@ -26,3 +26,12 @@
             }
           ]
         }
+        
+关于vue中的v-model：
+ 1、v-model一般用在输入框中，实现vue实例data中属性和模板中插值的双向绑定
+ 2、v-model其实是一个语法糖
+  <input type='text' v-model='something' />等价于
+  <input type='text' :value='something' @input='something = $event.target.value' />
+  //vue实例中data中的something与模板中的value单向绑定，data.something改变，模板中的something就改变
+  //input标签的input事件能够在输入框输入内容的时候改变模板中something的值
+  //:value和input原生的value属性并不是同一个属性，它们两个相互独立互不影响
