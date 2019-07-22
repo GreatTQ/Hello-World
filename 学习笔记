@@ -213,3 +213,45 @@
             }
           })
         </script>
+      
+      2.3 非父子组件间通信
+        2.3.1 使用一个空的vue实例充当中介来实现非父子组件通信
+          <div class="app">
+          
+          </div>
+          
+          <script>
+            var bus = new Vue();
+            
+            var my-component = {
+              name: "my-component",
+              tmeplate: "
+                <button @click="handlerClick">+</button>
+              ",
+              data: function() {
+                return {
+                  counter: 0
+                }
+              },
+              methods: {
+                handlerClick: function() {
+                  this.counter++;
+                  bus.$emit("handlerIncrease", this.counter);
+                }
+              }
+            };
+            
+            new Vue({
+              el: ".app",
+              data: {
+                value: 0
+              },
+              mounted() {
+                var _this = this;
+                bus.$on("handlerIncrease", function(counter) {
+                  _this.value = counter;
+                });
+              }
+            })
+          </script>
+      
