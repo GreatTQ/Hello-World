@@ -293,10 +293,116 @@
                 // 通过this.$refs.myComponent来访问子组件，从而获取子组件的message属性值再赋值给父组件的counter属性
                 this.counter = this.$refs.myComponent.message;
               }
+            },
+            components: {
+              "my-component": my-component
             }
           })
         </script>
         
       2.6 插槽
+        2.6.1 插槽的基本用法
+          <div class="app">
+            <componentA>
+              插槽内容
+            </componentA>
+          </div>
+          
+          <script>
+            var compontA = {
+              name: "componentA",
+              template: "\
+                <div>\
+                  // 插槽(插槽内容需要插入的位置，可以认为<slot></slot>代表的就是插槽内容）
+                  <slot></slot>\
+                </div>\
+              "
+            };
+            
+            new Vue({
+              el: ".app",
+              components: {
+                "componentA": componentA
+              }
+            })
+          </script>
+        最终渲染结果：
+          <div class="app">
+            <div>
+              插槽内容
+            </div>
+          </div>
         
-        
+        2.6.2 默认值和具名插槽
+          <slot></slot>标签中的内容是作为插槽的默认值存在的，当插槽内容为空，就会渲染插槽的默认值
+          具名插槽
+          <div class="app">
+            <componentA>
+              <template v-slot:header>
+                这是首部插槽内容
+              </template>
+              <template>
+                这是默认插槽内容
+              </template>
+              <template v-slot:footer>
+                这是尾部插槽内容
+              </template>
+            </componentA>
+          </div>
+          
+          <script>
+            var componentA = {
+              name: "componentA",
+              template: "\
+                <div>\
+                  <slot name="header">这是首部插槽的默认值</slot>\
+                  <slot>这是默认插槽的默认值</slot>\
+                  <slot name="footer">这是尾部插槽的默认值</slot>\
+                </div>\
+              "
+            };
+            
+            new Vue({
+              el: ".app",
+              components: {
+                "componentA": componentA
+              }
+            })
+          </script>
+          
+        2.6.3 作用域插槽
+          因为插槽内容是在父组件中定义的，所以如果插槽内容只能访问父组件中的数据
+          作用域插槽可以让插槽内容访问子组件中的内容
+          <div class="app">
+            <componentA>
+              <template v-slot:default="slotProps">
+                {{slotProps.user.name}}
+              </template>
+            </componentA>
+          </div>
+          
+          <script>
+            var componentA = {
+              name: "componentA",
+              template: "\
+                <div>\
+                  <slot :user="user">后备内容</slot>\
+                </div>\
+              ",
+              data: function() {
+                return {
+                  user: {
+                    name: "Dee",
+                    age: 19
+                  }
+                }
+              }
+            };
+            
+            new Vue({
+              el: ".app",
+              components: {
+                "componentA": componentA
+              }
+            })
+          </script>
