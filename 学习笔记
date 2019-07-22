@@ -258,3 +258,45 @@
             })
           </script>
       
+      2.4 $parent和$children
+        在组件中，使用this.$parent可以直接访问该组件的父实例或组件，父组件也可以通过this.$children访问它的所有子组件，当子组件较多时，通过this.
+      $children来一一遍历出子组件比较困难，并且遍历的序列不是固定的
+      
+      2.5 子组件索引
+        vue提供了一个子组件索引的方法，用特殊的属性ref来为子组件指定一个名称，在通过this.$refs.component-name来访问该组件
+        <div class="app">
+          <my-component ref="myComponent"></my-component>
+          <p>{{counter}}</p>
+          <button @click="handlerClick">handlerClick</button>
+        </div>
+        
+        <script>
+          var my-component = {
+            name: "my-component",
+            tmeplate: "\
+              <p>{{message}}</p>\
+            ",
+            data: function() {
+              return {
+                message: "Hello Word!"
+              }
+            }
+          };
+          
+          new Vue({
+            el: ".app",
+            data: {
+              counter: ""
+            },
+            methods: {
+              handlerClick: function() {
+                // 通过this.$refs.myComponent来访问子组件，从而获取子组件的message属性值再赋值给父组件的counter属性
+                this.counter = this.$refs.myComponent.message;
+              }
+            }
+          })
+        </script>
+        
+      2.6 插槽
+        
+        
