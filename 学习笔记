@@ -217,7 +217,7 @@
       2.3 非父子组件间通信
         2.3.1 使用一个空的vue实例充当中介来实现非父子组件通信
           <div class="app">
-          
+            <my-component></my-component>
           </div>
           
           <script>
@@ -251,6 +251,9 @@
                 bus.$on("handlerIncrease", function(counter) {
                   _this.value = counter;
                 });
+              },
+              components: {
+                "my-component": my-component
               }
             })
           </script>
