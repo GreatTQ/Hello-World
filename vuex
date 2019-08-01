@@ -1,0 +1,10 @@
+1、state
+  vuex使用单一状态树，用一个对象就包含了全部的应用层级状态。至此它便作为一个“唯一数据源 (SSOT)”而存在
+  在组建中访问state
+    this.$store.state.count
+    // 使用mapState辅助函数
+    mapState([
+      "count"
+    ])
+    
+2、
