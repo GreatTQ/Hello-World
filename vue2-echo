@@ -29,3 +29,17 @@
       
 3、JSON.parse
   JSON.parse用来解析JSON数据，返回一个由字符串描述的JavaScript值或对象。提供可选的reviver函数，用来修改解析生成的原始值，调用时机在parse函数返回之前
+  
+4、vue-router滚动行为
+  使用前端路由，当跳转到新路由时，想要页面滚动到顶部，或者是保存原先的滚动位置，就像重新加载页面那样，该功能只能在支持history.pushstate的浏览器中使用
+  当创建一个vue-router实例，可以提供一个scrollBehavior方法：
+    const router = new VueRouter({
+      routers: [...],
+      scrollBehavior(to, from, savedPosition) {
+        if(savedPosition) {
+          return savedPosition  // 返回savedPosition，在按下 后退/前进 按钮时，就像浏览器的原生表现那样
+        } else {
+          // return期望滚动到的位置
+        } 
+      }
+    });
