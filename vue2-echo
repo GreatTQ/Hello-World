@@ -1,0 +1,28 @@
+1、window.sessionStorage
+  localStorage和sessionStorage允许在浏览器中存储key/value对的数据
+  sessionStorage用于临时保存同一窗口或标签的数据，在关闭窗口或标签页之后数据将被自动删除
+  如果想在浏览器窗口关闭后还保存该数据，可以使用localStorage属性，该数据对象没有过期时间，除非你手动删除
+
+2、关于VUE中 import 、 export 和 export default 的注意问题
+  import关键字用于引用一个依赖包，需要相对路径
+    示例：import axios from "./axios"
+  import什么情况下使用{}的方式引用，什么情况下只用一个变量就行
+    （1）在引入一个使用export抛出的变量的情况下，使用{}的方式引用
+      示例：
+      a.js
+      export function gitList(){};  // 默认抛出一个gitList变量
+      
+      b.js
+      import {gitList} from "./a.js"
+    （2）引入一个使用export default抛出的变量，只需要自己取一个名字就行
+      示例：
+      a.js
+      var obj = {name= "Lee"};
+      export default obj;
+      
+      b.js
+      import aaa from "./a.js";
+      conlose.log(aaa.name); // 'Lee'
+    （3）注意
+      在一个.js文件中，只能有一个export default；
+      但是在一个.js文件中，可以有多个export
