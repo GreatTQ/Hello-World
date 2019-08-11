@@ -43,3 +43,34 @@
         } 
       }
     });
+    
+  5、关于vue中的data和computed
+    data：
+      它是vue的核心属性，它是vue绑定数据到HTML标签的数据源泉，vue会自动监视data里面的数据变化，自动更新数据到HTML标签里去
+      
+    computed：
+      vue的计算属性（computed）会自动混入到vue实例中，所有getter和setter的this上下文都会自动绑定为vue实例
+      官方示例：
+      var vm = new Vue({
+      data: { a: 1 },
+      computed: {
+        // 仅读取，值只须为函数，当只读取的时候，它不能去改变data中的值，只能取得data中的a，然后再对a进行计算，然后缓存a
+        aDouble: function () {
+          return this.a * 2
+        },
+        // 读取和设置
+        aPlus: {
+          get: function () {
+            return this.a + 1
+          },
+          // set函数可以改变data中的a
+          set: function (v) {
+            this.a = v - 1
+          }
+        }
+      }
+    })
+    vm.aPlus   // -> 2
+    vm.aPlus = 3
+    vm.a       // -> 2
+    vm.aDouble // -> 4
