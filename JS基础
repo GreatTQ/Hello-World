@@ -1,0 +1,28 @@
+变量
+  js中的变量是松散类型的，可以用来保存任意类型的数据，变量只是一个用来保存值的占位符
+  定义一个变量使用关键字var，js中的变量可以只声明不赋值（不初始化），未初始化的变量保存着一个特殊的值undefined
+  用var关键字声明的变量将是所声明作用域中的局部变量
+  在局部作用域中未使用var声明的变量是全局变量
+  
+数据类型
+
+  typeof操作符
+  alert(typeof 98);    //Number
+  alert(typeof "98");  //String
+  alert(typeof true);  //Boolean
+  
+  Undefined类型
+  Undefined类型只有一个值，即特殊的undefined值
+  使用var定义一个变量但是未初始化时，这个变量的值就是undefined
+  使用var定义一个变量可以不用初始化，也可以不用显式的将其赋值为undefined
+  使用typeof操作符检测一个未声明的变量时，结果为undefined；但是此时的undefined和已经声明但是未初始化的变量的undefined不一样
+  
+  Null类型
+  Null类型只有一个值，即特殊的null
+  null表示一个空对象指针，所以使用typeof操作符检测null会返回object
+  定义一个变量暂时不保存对象，那么这个变量应该显式的初始化为null
+  undefined派生自null，所以这两个值的相等性测试要返回true
+  
+  Boolean类型
+  Boolean类型只有两个值，true和false
+  
